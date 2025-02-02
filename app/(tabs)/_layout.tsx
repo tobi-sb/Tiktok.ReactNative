@@ -3,9 +3,16 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import Colors from '../../src/constants/Colors';
+import { useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
+
+export function useClientOnlyValue<T>(web: T, native: T): T {
+  return Platform.select({
+    web,
+    native,
+  }) as T;
+}
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
